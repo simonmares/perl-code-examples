@@ -12,8 +12,16 @@ is $fruit, 'apple';
 is $vegie, 'carrot';
 
 # you can do this for hashref too
-# a little confusing, dereferencing with ${$hash} is replaced to @{$hash}, arrayref is created in place?
+# you're dereferencing hashref in list (not $scalar) context
+# if its clear to you, you quite understand perl
 my @values = @$hash{qw/fruit vegie/};
 is_deeply \@values, [qw/apple carrot/];
+
+
+
+# arrayref TODO: add to own file
+
+my $arrayref = \((1, 2, 3));
+is_deeply $arrayref, [1,2,3];
 
 done_testing();
