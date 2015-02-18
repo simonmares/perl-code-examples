@@ -13,15 +13,23 @@ subtest 'splice' => sub {
     is_deeply $arrayref, [qw(- yes no no -)];
 };
 
-subtest 'push array to array' => sub {
+subtest 'cancatenating arrays' => sub {
     my @first = (1, 2, 3);
     my @second = (4, 5, 6);
-    my @array_concat = (@first, @second);
-    is_deeply \@array_concat, [1, 2, 3, 4, 5, 6], 'create new array from 2';
-    my $arrayref = [];
-    push $arrayref, @first;
-    push $arrayref, @second;
-    is_deeply $arrayref, [1,2,3,4,5,6], 'can push also a list';
+    my $expected = [1, 2, 3, 4, 5, 6];
+
+    subtest 'new array from others' => sub {
+        my @array_concat = (@first, @second);
+        is_deeply \@array_concat, $expected, 'create new array from 2';       <`2`>
+    };
+
+    subtest 'push' => sub {
+        my $arrayref = [];
+        push $arrayref, @first;
+        push $arrayref, @second;
+        is_deeply $arrayref, $expected, 'can push also a list';
+    };
+
 };
 
 done_testing();
