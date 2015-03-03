@@ -1,5 +1,5 @@
 package LoadStrict;
-# this applies only for this file
+# this applies only for this file, enables to import them in sub import
 use strict;
 use warnings;
 
